@@ -1,6 +1,6 @@
 # Sub-Gaussian
-$\color{blue}{An R code computing the observed Fisher information (OFI) matrix for the sub-Gaussian elliptically alpha-stable distribution.}$
-$\color{blue}{The arguments for the main function OFI(X, $\alpha$, $\Sigma$, $\boldsymbol{\mu}$) are X, alpha, Sigma, and Mu defined as follows.}$
+An R code computing the observed Fisher information (OFI) matrix for the sub-Gaussian elliptically alpha-stable distribution.
+The arguments for the main function OFI(X, $\alpha$, $\Sigma$, $\boldsymbol{\mu}$) are X, alpha, Sigma, and Mu defined as follows.
 
 $\color{red}{X}$     := an n by d matrix of n realizations each following a d-dimensional sub-Gaussian elliptically alpha-stable distribution,
 
