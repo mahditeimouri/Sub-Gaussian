@@ -16,7 +16,7 @@ arrange_sigma <- function(x)
 return( list(y = y, index = index) )
 }
 
-OFI <- function(X, alpha, Sigma, Mu, stochastic = FALSE)
+OFI <- function(X, alpha, Sigma, Mu, MCMC = FALSE)
 {
 	d <- length(Mu)
 	Dim <- d*(d + 1)/2 + d + 1
@@ -80,7 +80,7 @@ OFI <- function(X, alpha, Sigma, Mu, stochastic = FALSE)
 					Sum <- rep(0, M)
 					for(r in 1:M)
 					{
-						if( stochastic == TRUE )
+						if( MCMC == TRUE )
 						{
 							E <- rexp(1)
 							delta <- delta/E #mahalanobis( c(X[ index_C[i], ] - Mu)/E , rep(0, d), Sigma )
