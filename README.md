@@ -6,9 +6,9 @@ $\color{blue}{X}$     := an n by d matrix of n realizations each following a d-d
 
 $\color{blue}{\alpha}$ := the ML estimator for alpha, that is, the tail index parameter,
 
-Sigma := the ML estimator for dispersion matrix,
+$\color{blue}{\Sigma}$ := the ML estimator for dispersion matrix,
 
-Mu    := the ML estimator for location vector.
+$\color{blue}{\boldsymbol{\mu}}$    := the ML estimator for location vector.
 
 stochastic = FALSE := A logical statement for computing the partial derivative of log-likelihood function w.r.t tail index. By default it is FALSE indicating that Gaussian quadrature (GQ) is used for this mean and otherwise the MCMC method is used. Note that, in general, GQ is faster than the MCMC method. 
 
