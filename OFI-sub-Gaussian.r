@@ -18,7 +18,15 @@ return( list(y = y, index = index) )
 
 OFI <- function(X, alpha, Sigma, Mu, stochastic = FALSE)
 {
-	d  <- length(Mu)
+	X <- as.matrix(X)
+	if (is.null(X))         stop("data mst be given in a matrix form.")
+	if ( any( is.na(X) ) )  stop("NAs values are not allowed for matrix of observations.")
+	Dim <- dim(X)
+	n <- Dim[1]
+	d <- Dim[2]
+	if( length( Mu ) != d ) stop( "Length of mixing proportions and number of components G must be equal." )
+	if( length( Sigma[ ,1] ) != d[1] & length( Sigma[1, ] ) != d[2] ) stop( "dispersion matrix must be square." )
+	if( any( eigen(Sigma)$values < 0 ) ) stop( "dispersion matrix must be positive definite." )
 	Dim <- d*(d + 1)/2 + d + 1
 	D  <- mahalanobis(X, Mu, Sigma)
 	N  <- 3000
