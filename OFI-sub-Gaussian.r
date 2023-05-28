@@ -19,13 +19,13 @@ return( list(y = y, index = index) )
 OFI <- function(X, alpha, Sigma, Mu, stochastic = FALSE)
 {
 	X <- as.matrix(X)
-	if (is.null(X))         stop("data mst be given in a matrix form.")
+	if ( is.null(X) )       stop("data mst be given in a matrix form.")
 	if ( any( is.na(X) ) )  stop("NAs values are not allowed for matrix of observations.")
-	Dim <- dim(X)
-	n <- Dim[1]
-	d <- Dim[2]
-	if( length( Mu ) != d ) stop( "Length of mixing proportions and number of components G must be equal." )
-	if( length( Sigma[ ,1] ) != d[1] & length( Sigma[1, ] ) != d[2] ) stop( "dispersion matrix must be square." )
+	Dim_x <- dim(X)
+	n <- Dim_x[1]
+	d <- Dim_x[2]
+	if( length( Mu ) != d ) stop( "Length of location vector must be equal to d." )
+	if( length( Sigma[ ,1] ) != d & length( Sigma[1, ] ) != d ) stop( "dispersion matrix must be square." )
 	if( any( eigen(Sigma)$values < 0 ) ) stop( "dispersion matrix must be positive definite." )
 	Dim <- d*(d + 1)/2 + d + 1
 	D  <- mahalanobis(X, Mu, Sigma)
@@ -57,10 +57,10 @@ OFI <- function(X, alpha, Sigma, Mu, stochastic = FALSE)
 			       0.086899, 0.092122, 0.096368, 0.099593, 0.101762, 0.102852,
 			       0.102852, 0.101762, 0.099593, 0.096368, 0.092122, 0.086899, 0.080755, 0.073755, 0.065974,
 			       0.057493, 0.048402, 0.038799, 0.028784, 0.018466, 0.007968)
-    fun1 <- function(u, a, d, d0, M) M*(M*u)^d*exp(-d0*u^2*M^2/4)*a*(M*u)^(a-1)*exp(-u^a*M^a)*( 1/a+log(M*u) ) #-u^a*M^a*log(M*u)
-    fun2 <- function(u, a, d, d0, M) M*(M*u)^d*exp(-d0*u^2*M^2/4)*a*(M*u)^(a-1)*exp(-u^a*M^a)
-    fun5 <- function(x, a, d, y) (a + d - 1)*log(x) - x^a - y*x^2/4 
-    fun6 <- function(x, a, d, y) (a + d - 1)/x - a*x^(a-1) - y*x/2 
+	fun1 <- function(u, a, d, d0, M) M*(M*u)^d*exp(-d0*u^2*M^2/4)*a*(M*u)^(a-1)*exp(-u^a*M^a)*( 1/a+log(M*u) ) #-u^a*M^a*log(M*u)
+	fun2 <- function(u, a, d, d0, M) M*(M*u)^d*exp(-d0*u^2*M^2/4)*a*(M*u)^(a-1)*exp(-u^a*M^a)
+	fun5 <- function(x, a, d, y) (a + d - 1)*log(x) - x^a - y*x^2/4 
+	fun6 <- function(x, a, d, y) (a + d - 1)/x - a*x^(a-1) - y*x/2 
 	Sum  <- rep(0, M)
 	Dim_sigma <- d*(d + 1)/2
 	S      <- rep( 0, d + Dim_sigma + 1 )
